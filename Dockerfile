@@ -5,3 +5,5 @@ RUN apt install –y apache2-utils
 RUN apt clean 
 EXPOSE 80
 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+
+LABEL org.opencontainers.image.source="https://github.com/nispk/webapps"
