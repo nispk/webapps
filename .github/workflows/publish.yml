@@ -7,11 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,8 +21,14 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Build the apache docker image
+      - name: login to GHCR
         run: |
-          echo $DEVOPS_ | docker login ghcr.io -u nispk --password-stdin
+          echo $DEVOPS_APACHE | docker login ghcr.io -u nispk --password-stdin
         env:
-          DEVOPS: {{ secrets.DEVOPS_ }}
+          DEVOPS_APACHE: {{ secrets.DEVOPS_APACHE }}
+          
+      - name: Link the container to repository and build the docker image
+        run: |
+          docker build. --tag ghcr.io/nispk/apache_container:latest
+          docker run ghcr.io/nispk/apache_container:latest
+          docker push ghcr.io/nispk/apache_container:latest
