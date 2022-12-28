@@ -31,6 +31,6 @@ jobs:
           
       - name: Link the container to repository and build the docker image
         run: |
-          docker build. --tag ghcr.io/nispk/apache_container:latest
+          docker build . --tag ghcr.io/nispk/apache_container:latest
           docker run ghcr.io/nispk/apache_container:latest
           docker push ghcr.io/nispk/apache_container:latest
