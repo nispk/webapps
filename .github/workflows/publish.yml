@@ -22,10 +22,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: login to GHCR
-        run: |
-          echo $DEVOPS_APACHE | docker login ghcr.io -u nispk --password-stdin
-        env:
-          DEVOPS_APACHE: {{ secrets.DEVOPS_APACHE }}
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+    
           
       - name: Link the container to repository and build the docker image
         run: |
