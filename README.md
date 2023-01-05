@@ -4,5 +4,7 @@ In this project, we have deployed an HTML website on AWS EC2 instance through De
 
 ## DevOps process
 
+![Display image](DevOps_process.jpg?raw=true)
+
 
 
